@@ -95,7 +95,7 @@ echo ""
 # 运行容器（强制使用ros用户，UID/GID 1000:1000）
 echo "正在启动ROS2 Humble容器（以ros用户运行，UID:1000 GID:1000）..."
 docker run -it \
-    --name humble-shm \
+    --name orbbec_humble \
     --network host \
     --ipc host \
     --privileged \
@@ -105,7 +105,7 @@ docker run -it \
     -e NVIDIA_DRIVER_CAPABILITIES=all \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
     -v "$PROJECT_DIR":/workspace:rw \
-    -v /dev/dri:/dev/dri \
+    -v /dev/:/dev/ \
     "${XAUTH_MOUNT_ARGS[@]}" \
     --runtime=nvidia \
     --gpus all \
